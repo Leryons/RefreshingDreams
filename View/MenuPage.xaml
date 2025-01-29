@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:RefreshingDreams.Model"
+             xmlns:viewmodel="clr-namespace:RefreshingDreams.ViewModel"
+             x:DataType="viewmodel:CocktailViewModel"
+             x:Class="RefreshingDreams.View.MenuPage">
+
+
+    <Grid ColumnDefinitions="*,*,*,*"
+          Margin="5">
+        
+        <CollectionView ItemsSource="{Binding Cocktails}"
+                        SelectionMode="Multiple"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="4">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="3"
+                                 VerticalItemSpacing="5"
+                                 HorizontalItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="model:Cocktail">
+
+                    <Border>
+                        <VerticalStackLayout>
+                            
+                            <Image Source="{Binding Img}"
+                                   Aspect="AspectFit"
+                                   VerticalOptions="Start"
+                                   HeightRequest="200"
+                                   WidthRequest="2500"/>
+
+                            <Grid RowDefinitions="*,Auto,*">
+                                
+                                <Label Text="{Binding Name}" 
+                                       FontAttributes="Bold"
+                                       FontSize="14"
+                                       Margin="5,4,0,4"
+                                       HorizontalOptions="Start"
+                                       Grid.Row="0"/>
+
+                                <Label Text="{Binding Price, StringFormat='\$ {0:F2}'}"
+                                       HorizontalOptions="End"
+                                       Margin="5"
+                                       Grid.Row="2"/>
+                                
+                            </Grid>
+
+                        </VerticalStackLayout>
+                    </Border> 
+
+                </DataTemplate>
+                
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
