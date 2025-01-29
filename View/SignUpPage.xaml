@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:RefreshingDreams.Model"
+             xmlns:viewmodel="clr-namespace:RefreshingDreams.ViewModel"
+             x:DataType="viewmodel:UserViewModel"
+             x:Class="RefreshingDreams.View.SignUpPage">
+
+    <Grid ColumnDefinitions="*,250,*"
+          RowDefinitions="*,*,*">
+
+        <VerticalStackLayout Grid.Row="1"
+                             Grid.Column="1">
+
+            <Label Text="Refreshing Dreams"
+                   FontSize="25"
+                   FontFamily="Belgiano"
+                   HorizontalOptions="Center"
+                   Margin="20"/>
+
+            <Border>
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5"/>
+                </Border.StrokeShape>
+
+                <StackLayout>
+
+                    <Entry Placeholder="E-mail"
+                           Margin="5"
+                           Text="{Binding Email}"/>
+
+                    <Entry Placeholder="Name"
+                           Margin="5"
+                           Text="{Binding Name}"/>
+
+                    <Entry Placeholder="LastName"
+                           Margin="5"
+                           Text="{Binding LastName}"/>
+
+                    <Entry Placeholder="Password"
+                           IsPassword="True"
+                           Margin ="5"
+                           Text="{Binding Password}"/>
+
+                    <Button Text="Sign Up"
+                            Command="{Binding RegisterUserCommand}"
+                            Margin="5"/>
+
+                </StackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>
