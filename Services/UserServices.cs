@@ -1,27 +1,26 @@
 ﻿namespace RefreshingDreams.Services;
 
-public class UserServices : ContentPage
+public class UserServices
 {
-    private readonly SQLiteAsyncConnection sQLite;
+    private readonly Database db;
 
-    public UserServices()
+    public UserServices(Database database)
     {
-        sQLite = new SQLiteAsyncConnection(".//User.db3");
-        sQLite.CreateTableAsync<User>().Wait();
+        db = database;
     }
 
-    public Task<User> LoginUser(string email, string password)
+    public async Task<User> LoginUser(string email, string password)
     {
-        return sQLite.Table<User>()
-                     .Where(p => p.Email == email && p.Password == password)
-                     .FirstOrDefaultAsync();
+        return await db.sQLiteAsyncConnection.Table<User>()
+                                             .Where(p => p.Email == email && p.Password == password)
+                                             .FirstOrDefaultAsync();
     }
 
     public async Task<bool> RegisterUser(string email, string name, string lastname,string password)
     {
-        var existingUser = await sQLite.Table<User>()
-                                       .Where(p => p.Email == email) 
-                                       .FirstOrDefaultAsync();
+        var existingUser = await db.sQLiteAsyncConnection.Table<User>()
+                                                         .Where(p => p.Email == email) 
+                                                         .FirstOrDefaultAsync();
 
         if (existingUser != null)
         {
@@ -36,9 +35,7 @@ public class UserServices : ContentPage
             Password = password
         };
 
-        await sQLite.InsertAsync(newUser);
-
-        await DisplayAlert("Éxito", "Registro completado", "OK");
+        await db.sQLiteAsyncConnection.InsertAsync(newUser);
         return true;
     }
 }

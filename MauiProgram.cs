@@ -12,16 +12,26 @@
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Roboto-Regular.ttf", "Roboto");
+                    fonts.AddFont("Belgiano_Serif.ttf", "Belgiano");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton<CocktailServices>();
-            builder.Services.AddSingleton<CocktailViewModel>();
-            builder.Services.AddSingleton<MenuPage>();
 
+            // Services
+            builder.Services.AddSingleton<Database>();
+            builder.Services.AddSingleton<CocktailServices>();
+            builder.Services.AddTransient<UserServices>();
+
+            // ViewModels
+            builder.Services.AddTransient<UserViewModel>();
+            builder.Services.AddSingleton<CocktailViewModel>();
+
+            // Pages
+            builder.Services.AddSingleton<MenuPage>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<SignUpPage>();
 
             return builder.Build();
         }

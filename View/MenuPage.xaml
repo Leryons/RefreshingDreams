@@ -33,7 +33,7 @@
                                    Aspect="AspectFit"
                                    VerticalOptions="Start"
                                    HeightRequest="200"
-                                   WidthRequest="2500"/>
+                                   WidthRequest="250"/>
 
                             <Grid RowDefinitions="*,Auto,*">
                                 

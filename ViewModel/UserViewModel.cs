@@ -32,12 +32,27 @@ public partial class UserViewModel : BaseViewModel
         try
         {
             IsBusy = true;
-            await userServices.LoginUser(_email, _password);
+            var user = await userServices.LoginUser(_email, _password);
 
+            if (user != null)
+            {
+                await Shell.Current.DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
+
+                await Shell.Current.GoToAsync("MenuPage");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "Credenciales incorrectas", "OK");
+            }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex);
+            await Shell.Current.DisplayAlert("Error", "Ocurrió un error al iniciar sesión", "OK");
+        }
+        finally
+        {
+            IsBusy = false;
         }
     }
 
@@ -52,11 +67,24 @@ public partial class UserViewModel : BaseViewModel
         try
         {
             IsBusy = true;
-            await userServices.RegisterUser(_email, _name, _lastName, _password);
+            bool isRegistered = await userServices.RegisterUser(_email, _name, _lastName, _password);
+
+            if (isRegistered)
+            {
+                await Shell.Current.DisplayAlert("Éxito", "Registro completado", "OK");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "El usuario ya existe", "OK");
+            }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex);
+        }
+        finally 
+        {
+            IsBusy = false;
         }
     }
 }
