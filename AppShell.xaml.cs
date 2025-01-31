@@ -9,6 +9,7 @@
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(MenuPage), typeof(MenuPage));
             Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
+            Routing.RegisterRoute(nameof(BillPage), typeof(BillPage));
         }
     }
 }

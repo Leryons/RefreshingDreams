@@ -32,6 +32,7 @@
             builder.Services.AddSingleton<MenuPage>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<SignUpPage>();
+            builder.Services.AddTransient<BillPage>();
 
             return builder.Build();
         }

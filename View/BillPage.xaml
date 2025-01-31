@@ -1,20 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:RefreshingDreams.Model"
              xmlns:viewmodel="clr-namespace:RefreshingDreams.ViewModel"
              x:DataType="viewmodel:CocktailViewModel"
-             x:Class="RefreshingDreams.View.MenuPage">
+             x:Class="RefreshingDreams.View.BillPage">
 
-    <Grid ColumnDefinitions="*,*,*,*"
+    <Grid ColumnDefinitions="*"
           RowDefinitions="*,Auto"
           Margin="5">
-        
-        <CollectionView ItemsSource="{Binding Cocktails}"
-                        SelectionMode="Multiple"
-                        SelectionChanged="OnCocktailSelectionChanged"
+
+        <CollectionView ItemsSource="{Binding SelectedCocktails}"
+                        SelectionMode="None"
                         Grid.Column="0"
-                        Grid.ColumnSpan="4"
                         Grid.Row="0">
 
             <CollectionView.ItemsLayout>
@@ -30,7 +28,7 @@
 
                     <Border>
                         <VerticalStackLayout>
-                            
+
                             <Image Source="{Binding Img}"
                                    Aspect="AspectFit"
                                    VerticalOptions="Start"
@@ -38,7 +36,7 @@
                                    WidthRequest="250"/>
 
                             <Grid RowDefinitions="*,Auto,*">
-                                
+
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold"
                                        FontSize="14"
@@ -50,20 +48,20 @@
                                        HorizontalOptions="End"
                                        Margin="5"
                                        Grid.Row="2"/>
-                                
+
                             </Grid>
 
                         </VerticalStackLayout>
-                    </Border> 
+                    </Border>
 
                 </DataTemplate>
-                
+
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
-        <Button Text="Comprar"
-                Clicked="GoToBill"
+        <Button Text="Siguiente"
+                Command="{Binding DeliveryCommand}"
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
                 Grid.Row="1"/>
