@@ -36,7 +36,6 @@ public partial class UserViewModel : BaseViewModel
 
             if (user != null)
             {
-                await Shell.Current.DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
 
                 await Shell.Current.GoToAsync("MenuPage");
             }

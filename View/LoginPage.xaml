@@ -9,12 +9,21 @@
     <Grid ColumnDefinitions="*,250,*"
           RowDefinitions="*,*,*">
 
+        <VerticalStackLayout Grid.Column="1"
+                             Grid.Row="0"
+                             VerticalOptions="End">
+            
+            <Image Source="Resources/Images/logo.png"
+                   WidthRequest="180"/>
+            
+        </VerticalStackLayout>
+        
         <VerticalStackLayout Grid.Row="1"
                              Grid.Column="1">
 
             <Label Text="Refreshing Dreams"
-                   FontSize="25"
-                   FontFamily="Belgiano"
+                   FontSize="27"
+                   FontFamily="Serif"
                    HorizontalOptions="Center"
                    Margin="20"/>
 
